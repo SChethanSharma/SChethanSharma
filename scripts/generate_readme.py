@@ -35,21 +35,22 @@ def build_card(repo):
     if updated:
         updated = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%SZ").date().isoformat()
 
-    # Shields for stars and forks
-    stars_badge = f"https://img.shields.io/github/stars/{USER}/{name}?style=social"
-    forks_badge = f"https://img.shields.io/github/forks/{USER}/{name}?style=social"
-    lang_badge = f"https://img.shields.io/badge/language-{lang.replace(' ', '%20')}-gray" if lang else ""
+        # Shields for stars and forks
+        stars_badge = f"https://img.shields.io/github/stars/{USER}/{name}?style=social"
+        forks_badge = f"https://img.shields.io/github/forks/{USER}/{name}?style=social"
+        lang_badge = f"https://img.shields.io/badge/language-{lang.replace(' ', '%20')}-gray" if lang else ""
+        lang_img = f'<img src="{lang_badge}" alt="lang"/>' if lang_badge else ''
 
-    card = f"""
+        card = f"""
 <div style=\"width:320px;margin:10px;padding:16px;border-radius:12px;box-shadow:0 4px 10px rgba(2,6,23,0.2);background:#0d1117;color:#c9d1d9;display:inline-block;vertical-align:top;\">
-  <a href=\"{url}\" style=\"text-decoration:none;color:inherit;\"><h3 style=\"margin:0 0 8px 0;\">{name}</h3></a>
-  <p style=\"margin:0 0 8px 0;font-size:13px;color:#9ea7b3;min-height:40px;\">{desc}</p>
-  <div style=\"margin-top:8px;display:flex;gap:8px;align-items:center;\">
-    {f'<img src=\"{lang_badge}\" alt=\"lang\"/>' if lang_badge else ''}
-    <img src=\"{stars_badge}\" alt=\"stars\" />
-    <img src=\"{forks_badge}\" alt=\"forks\" />
-    <span style=\"margin-left:auto;font-size:12px;color:#8b949e;\">Updated {updated}</span>
-  </div>
+    <a href=\"{url}\" style=\"text-decoration:none;color:inherit;\"><h3 style=\"margin:0 0 8px 0;\">{name}</h3></a>
+    <p style=\"margin:0 0 8px 0;font-size:13px;color:#9ea7b3;min-height:40px;\">{desc}</p>
+    <div style=\"margin-top:8px;display:flex;gap:8px;align-items:center;\">
+        {lang_img}
+        <img src=\"{stars_badge}\" alt=\"stars\" />
+        <img src=\"{forks_badge}\" alt=\"forks\" />
+        <span style=\"margin-left:auto;font-size:12px;color:#8b949e;\">Updated {updated}</span>
+    </div>
 </div>
 """
     return card
